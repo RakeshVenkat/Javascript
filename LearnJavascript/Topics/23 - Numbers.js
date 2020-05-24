@@ -57,3 +57,5 @@ describe('Numbers', function () {
     expect(typeof unsureNumber == "number" && !isNaN(unsureNumber)).toBe(false);
   });
 });
+
+2**3

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click me if you can!!</title>
+</head>
+<body>
+    <button>Click me!!</button>
+</body>
+<script>
+    const btn = document.querySelector('button')
+    btn.style.position='relative'
+    btn.addEventListener('mouseover', () => {
+        btn.style.top = `${Math.floor(Math.random()*window.innerHeight)}px `
+        btn.style.left = `${Math.floor(Math.random()*window.innerWidth)}px`
+    })
+
+    btn.addEventListener('click' , () => {
+        btn.innerText='Yay !! you got me..'
+        document.body.style.backgroundColor= 'green'
+    })
+
+    btn.addEventListener('dblclick' , () => {
+        btn.innerText='Click me!!'
+        document.body.style.backgroundColor= 'white'
+        btn.style.top = 0
+        btn.style.left = 0
+    })
+</script>
+</html>

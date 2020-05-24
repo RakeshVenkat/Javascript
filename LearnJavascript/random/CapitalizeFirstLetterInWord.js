@@ -12,10 +12,18 @@ function LetterCapitalize(str) {
     return replacedWords.join(' ');
 }
 
+// Optimized version 
+const convertToSentenceCase = str => {
+    return str.split(' ').map(eachWord => { 
+        let firstLetter = eachWord.substr(0,1);
+        return eachWord.replace(firstLetter, firstLetter.toUpperCase())})
+        .join(' ')
+}
+
 // keep this function call here 
 console.log(LetterCapitalize('hello world q'));
 
-
+console.log(convertToSentenceCase('hello world q'))
 /*
 
   wordarr = str.split(" ");

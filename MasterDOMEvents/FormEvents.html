@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>Name:<input id="name" type="text"></label>
+        <label>Password:<input id="password" type="password"></label>
+        <label>Color:<input id="color" type="color"></label>
+        <label>Category:<select id="category">
+            <option value="Human">Human</option>
+            <option value="Animal">Animal</option>
+            <option value="Ghost">Ghost</option></select></label>
+            <label>on Holiday: 
+                <input id="holidayYes" type="checkbox">Yes 
+                <input id="holidayNo" type="checkbox" checked>No</label>
+    </form>
+
+    <form>
+        <input type="text" name="username">
+        <input type="email" name="email">
+    </form>
+
+    <form id="form--general">
+        <input type="text" name="username">
+        <input type="email" name="email">
+        <input type="checkbox" name="isTrue">yes
+        <button type="submit">save</button>
+    </form>
+</body>
+<script>
+    const formData = {}
+    // 1) use the input event and the element ids to fetch the form data using the this object
+    //  get checkbox value via el.checked , for others use el.value
+    const nameEl = document.getElementById('name')
+    const passwordEl = document.getElementById('password')
+    const colorEl = document.getElementById('color')
+    const categoryEl = document.getElementById('category')
+    const holidayYesEl = document.getElementById('holidayYes')
+    const holidayNoEl = document.getElementById('holidayNo')
+
+    const elements = [nameEl, passwordEl, colorEl, categoryEl, holidayNoEl, holidayYesEl]
+
+    elements.forEach(el => {
+        el.addEventListener('input', function () {
+            formData[this.id] = this.type === 'checkbox' ? el.checked : el.value
+            console.log(formData)
+        })
+    })
+    console.log(formData)
+
+    // 2) use the name attribute of the input and event
+    const userNameEl = document.querySelector('input[name="username"]')
+    const emailEl = document.querySelector('input[name="email"]')
+    const formElements = [userNameEl, emailEl]
+    const formData2 = {}
+    formElements.forEach(el => {
+        el.addEventListener('input' , (event) => {
+            formData2[event.target.name] = event.target.value
+            console.log(formData2)
+        })
+    })
+
+    //3) use the form and the submit event to add listeners
+    // Downside: you need top wait for the form submission.
+    // change per key press is not captured here
+    const generalForm = document.getElementById('form--general')
+    const formData3 = {}
+    generalForm.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+        // The event.target is an object with the array elements of each form element
+        // fetch the array of input elements in the event.target
+        const targets = [...event.target];
+        targets.forEach(target => {
+            if(target.nodeName.toLowerCase() === 'input'){
+                formData3[target.name] =  target.type === 'checkbox' ? target.checked: target.value
+            }
+        })        
+        console.log(formData3)
+    })
+
+</script>
+</html>

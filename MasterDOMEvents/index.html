@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>welcome</button>
+    <!-- Adding inline event handler is possible. But bad practice-->
+    <!-- You dont want your code to be spread all over your code base-->
+    <button class="btn btn--random"
+     ondblclick="console.log(`When you press reset button twice, you get a random number for free: ${Math.random()}`)">random number</button>
+    <form>
+        <button type="submit" class="btn btn--logPI">Value of PI</button>
+    </form>
+    
+    <button class="btn btn--multiple-events">Click me!!</button>
+    <button class="btn btn--multiple-events-onclick">Demo of limitation of onClick event association</button>
+</body>
+<script src="main.js"></script>
+</html>

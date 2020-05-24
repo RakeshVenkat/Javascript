@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 150px;
+            height: 200px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            border-bottom: 2px solid black;
+        }
+
+        .result{
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            font-size: larger;
+            font-family: cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class='container'></div>
+    <div class='result'>DO you want to explore the rainbow color!! Move your mouse over the boxes..</div>
+</body>
+<script>
+    const divEl = document.querySelector('.container')
+    const resultDivEl = document.querySelector('.result')
+
+    const colors = ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red']
+    const boxes = colors.map(color => {
+       const eachBox = document.createElement('div')
+       eachBox.classList.add('box')
+       eachBox.style.backgroundColor = color
+
+       // There are 3 ways to capture the color 
+       // 1) Use the color property 
+       // 2) Use the this property
+       // 3) Use the event.target property
+       eachBox.addEventListener('mouseover', function (event){
+            //resultDivEl.style.backgroundColor = color
+            console.log(this)
+            // NOTE: the this is the div element that invoked the the mouseover event !!
+            // NOTE: this is the Window when you use the arrow function !!
+            //resultDivEl.style.backgroundColor = this.style.backgroundColor
+
+            // The mouseEvent is logged here
+            console.log(event)
+            resultDivEl.style.backgroundColor = event.target.style.backgroundColor
+
+            resultDivEl.style.height = `${window.innerHeight - this.style.width}px`
+            resultDivEl.style.color = 'white'
+            resultDivEl.innerText = color
+       })
+       return eachBox
+    })
+    divEl.append(...boxes)
+
+
+</script>
+</html>

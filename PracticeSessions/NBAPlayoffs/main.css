@@ -1,0 +1,30 @@
+
+h1{
+    text-align: center;
+}
+
+.team--selection{
+   text-align: right;
+}
+
+.team--selection select {
+    padding: 2px 20px;
+    font-size: 30px;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    padding: 20px;
+    margin-bottom: 2px;
+}
+
+.green{
+    background-color: #18cc18ba;
+}
+
+.red{
+    background-color: #ff5e00d9;
+}

@@ -38,3 +38,9 @@ function LongestWord(sen) {
          
 */
 
+let x = ['do' , 'dogs', 'bark', 'all', 'the', 'time??']
+x.sort((a,b) => a.length - b.length)
+console.log(x)
+x.sort((a,b) => b.length - a.length)
+console.log(x)
+Array.prototype.sort() 

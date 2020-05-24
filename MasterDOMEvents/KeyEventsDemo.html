@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Events Demo</title>
+</head>
+<body>
+    <input type="text" class="inp">
+</body>
+
+<script>
+    const inpEl = document.querySelector('.inp')
+    inpEl.addEventListener('keyup', event => {
+        console.log(`up: ${event}`)
+    })
+    inpEl.addEventListener('keydown', event => {
+        console.log(`down: ${event}`)
+    })
+    inpEl.addEventListener('keypress', event => {
+        console.log(`press: ${event}`)
+    })
+
+    document.body.addEventListener('keypress', e => {
+        console.log(e)
+    })
+</script>
+</html>
