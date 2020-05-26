@@ -41,8 +41,6 @@ const btnMajorCbHell = document.querySelector('.btn--major-cb-hell');
 moveXV1 = (btnMajorCbHell, position, delay, onSuccess, onFailure) => {
 	setTimeout(() => {
 		let btnClientRect = btnMajorCbHell.getBoundingClientRect();
-		console.log(btnClientRect.right, btnClientRect.left);
-
 		if (Math.round(btnClientRect.right) + position < bodyEl.clientWidth) {
 			btnMajorCbHell.style.transform = `translateX(${Math.round(btnClientRect.left) + position}px)`;
 			btnClientRect = btnMajorCbHell.getBoundingClientRect();
@@ -123,28 +121,91 @@ console.log(
 // Simulation of promise responses using a Math.random() operation
 randomPromise = () =>
 	new Promise((resolve, reject) => {
-            const randomNum = Math.random();
-            if (randomNum > 0.5) {
-                resolve(randomNum + Date.now());
-            } else {
-                reject(randomNum + Date.now());
-            }
+		const randomNum = Math.random();
+		if (randomNum > 0.5) {
+			resolve(randomNum + Date.now());
+		} else {
+			reject(randomNum + Date.now());
+		}
 	});
 
 for (let i = 0; i < 10; i++) {
 	console.log(randomPromise());
 }
 
+const pages = [ '/about', '/faq' ];
 
-const pages = ['/about','/faq']
+const request = (url) =>
+	new Promise((resolve, reject) => {
+		if (pages.includes(url)) {
+			setTimeout(() => {
+				resolve({ status: 200, data: { pagesCount: 10 } });
+			}, 2000);
+		} else {
+			setTimeout(() => {
+				reject({ status: 404, data: 'Page not found' }), 500;
+			});
+		}
+	});
 
-const request = (url) => new Promise((resolve, reject) => {
-    if(pages.includes(url)){
-        setTimeout(() => {resolve({status: 200, data: {pagesCount: 10}})}, 2000)
-    } else {
-        setTimeout(() => {reject({status: 404, data: 'Page not found'}), 500})
-    }
-})
+request('/about')
+	.then((res) => {
+		console.log(res);
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+request('/contactus')
+	.then((res) => {
+		console.log(res);
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+/////////////// PROMSISE PATTERN
+// Using a promise, now you can resolve or reject
+// use a then and catch to handle the success / error cases
+moveXV2 = (btnMajorCbHell, position, delay) => {
+	return new Promise((onSuccess, onFailure) => {
+		setTimeout(() => {
+			let btnClientRect = btnMajorCbHell.getBoundingClientRect();
+			if (Math.round(btnClientRect.right) + position < bodyEl.clientWidth) {
+				btnMajorCbHell.style.transform = `translateX(${Math.round(btnClientRect.left) + position}px)`;
+				btnClientRect = btnMajorCbHell.getBoundingClientRect();
+				onSuccess();
+			} else {
+				onFailure();
+			}
+		}, delay);
+	});
+};
 
-request('/about').then((res) => {console.log(res)}).catch((err)=> {console.log(err)})
-request('/contactus').then((res) => {console.log(res)}).catch((err)=> {console.log(err)})
+// The triangular callback hell patern is flattened out now
+// use a .then() and return the promise within .then()
+//NOTE: using the return in all steps is not needed, but in the last one
+// otherwise you cannot catch the error!!
+const btnPromise = document.querySelector('.btn--major-cb-hell-solved-promises');
+moveXV2(btnPromise, 100, 200)
+	.then(() => {
+		console.log('Moved');
+		return moveXV2(btnPromise, 100, 200);
+	})
+	.then(() => {
+		console.log('Moved');
+		return moveXV2(btnPromise, 100, 200);
+	})
+	.then(() => {
+		console.log('Moved');
+		return moveXV2(btnPromise, 100, 200);
+	})
+	.then(() => {
+		console.log('Moved');
+		return moveXV2(btnPromise, 100, 200);
+	})
+	.then(() => {
+		console.log('Moved');
+		return moveXV2(btnPromise, 100, 200);
+	})
+	.catch(() => {
+		alert('Cannot move anymore!!');
+	});
