@@ -1,0 +1,56 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+#div--timer-container{
+	position: absolute;
+	margin-left: calc(calc(100% - 600px)/2);
+}
+
+#div--container {
+	width: 300px;
+	text-align: center;
+	position: relative;
+    top: -420px;
+    left: 90px;
+}
+
+#div__inp--container {
+	display: inline-block;
+}
+
+#inp--timer {
+	display: block;
+	border: none;
+	font-size: 80px;
+	width: 200px;
+	text-align: right;
+}
+
+#div__btn--container {
+	display: inline-block;
+}
+
+#div__btn--container button {
+	font-size: 30px;
+	padding: 2px 10px;
+	border-radius: 10px;
+	border-color: black;
+	margin: 0px 10px;
+}
+
+#div__btn--container button:first-child {
+	margin-left: 60px;
+}
+
+button:focus {
+	outline: none;
+}

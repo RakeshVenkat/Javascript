@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Stop Watch</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        input {
+            border: none;
+        }
+
+        .inp--container{
+            width: 250px;
+            text-align: center;
+        }
+
+        .inp__timer{
+            font-size: 100px;
+            width: 170px;
+            padding-left: 70px;
+            font-family: 'Lucida Sans', sans-serif;
+        }
+
+        .btn--container {
+            width: 250px;
+            text-align: center;
+        }
+
+        .btn {
+            border: none;
+            background: cadetblue;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <form id="form__timer"> -->
+        <div class="inp--container">
+                <input class="inp__timer" type="number" min="0" max="600" value="60">
+        </div>
+
+    <div class="btn--container">
+        <button class="btn btn--play">PLAY</button>
+        <button class="btn btn--pause">PAUSE</button>
+    </div>
+
+    <!-- </form> -->
+
+
+</body>
+<script src='main.js'></script>
+
+</html>
