@@ -38,15 +38,20 @@ const getResource = async (url) => {
 	try {
 		const res = await axios.get(url);
 		console.log('----------Success in getting planets via Async - Await');
-		res.data.results.forEach((element) => {
+		return res.data
+		/* res.data.results.forEach((element) => {
 			console.log(element.name);
-		});
+		}); */
 	} catch (err) {
 		console.error('ERROR!!', err);
 	}
 };
 
-getResource('http://swapi.dev/api/starships');
+const results = []
+const response = getResource('http://swapi.dev/api/starships')
+	.then(res => {results = res})
+	.catch(err => err);
+console.log(':::',results)
 
 const bodyEl = document.body;
 function changeBackground(el, color, delay) {

@@ -1,0 +1,51 @@
+body{
+    font-family: cursive;
+    font-size: 25px;
+    
+}
+
+#movie-div--container{
+    display: flex;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+}
+
+.form-movie--container {
+    width: 100%;
+    min-width: 400px;
+}
+.form-movie input{
+    border: 2px solid #c61d2b;
+    border-radius: 5px;
+    width: 90%;
+    text-align: center;
+    padding: 5px;
+    margin: 10px 5%;
+}
+
+.ul-movielist{
+    width: 89%;
+    list-style: none;
+    margin-top:0;
+}
+.li-listitem{
+    padding: 5px 0px 10px 5px;
+    margin-left: 10px;
+    background-color: rgba(209, 29, 29, 0.877);
+    color: white;
+    border-bottom: 2px solid rgb(240, 232, 232);
+    font-size: large;
+    
+}
+
+.li-listitem span:first-child{
+    display: inline-block;
+    min-width: 200px;
+    margin-right: 2px; 
+}
+
+.listItem-poster{
+    width: 90%;
+    margin-left: 4%;
+}
