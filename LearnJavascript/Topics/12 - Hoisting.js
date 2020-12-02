@@ -40,6 +40,7 @@ describe('Hoisting', function () {
       try {
         return functionVariable();
       } catch (e) {
+        //Uncaught TypeError: functionVariable is not a function
         return "NotLoaded";
       }
       var functionVariable = function functionResult() { //This function is never reached since it exists after the return statement

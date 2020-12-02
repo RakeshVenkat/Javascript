@@ -16,12 +16,49 @@ const greet = async (name) => {
 const message = greet('Mr. Trump');
 console.log(message); // Promise {<resolved>: "Hi!! Mr. Trump"}
 
+// calling async functions need not be wrapped in an async function. that creates a chain otherwise?
+// Unless you want to use the await keyword !!!
+const callAsyncFunc = () => {
+	add(2,3).then(val => console.log(val))
+	greet('Mr. Universe!!').then(val => console.log(val))
+}
+callAsyncFunc()
+
 // How do you handle these? use: .then() and .catch()
 sum.then((val) => console.log(val)).catch((err) => console.error(err));
 sum1.then((val) => console.log(val)).catch((err) => console.error(err));
 message.then((val) => console.log(val)).catch((err) => console.error(err));
 
-//////////// AXIOS returns a promise
+// Why is await needed? The rest of the code is not fired till the first await is complete.
+const bodyEl = document.body;
+function changeBackground(el, color, delay) {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			el.style.backgroundColor = color;
+			resolve(); // resolve the promise after the delay
+		}, delay);
+	});
+}
+
+// ??!! You donot see the colors: pink, red, violet, green. 
+ changeBackground(bodyEl, 'pink', 2000)
+ changeBackground(bodyEl, 'red', 2000)
+ changeBackground(bodyEl, 'violet', 2000)
+ changeBackground(bodyEl, 'green', 2000)
+ changeBackground(bodyEl, 'purple', 2000)
+
+const lightShow = async () => {
+	await changeBackground(bodyEl, 'pink', 5000);
+	await changeBackground(bodyEl, 'red', 5000);
+	await changeBackground(bodyEl, 'violet', 5000);
+	await changeBackground(bodyEl, 'green', 5000);
+	await changeBackground(bodyEl, 'purple', 5000);
+};
+
+// ??!! All colors are seen. One after another
+lightShow();
+
+//////////// AXIOS returns a promise: Need internet to run below!!
 axios
 	.get('http://swapi.dev/api/planets')
 	.then((res) => {
@@ -39,44 +76,21 @@ const getResource = async (url) => {
 		const res = await axios.get(url);
 		console.log('----------Success in getting planets via Async - Await');
 		return res.data
-		/* res.data.results.forEach((element) => {
-			console.log(element.name);
-		}); */
+	//	 res.data.results.forEach((element) => {
+	//		console.log(element.name);
+	//	}); 
 	} catch (err) {
 		console.error('ERROR!!', err);
 	}
 };
 
-const results = []
+let results = []
 const response = getResource('http://swapi.dev/api/starships')
 	.then(res => {results = res})
 	.catch(err => err);
+response()
 console.log(':::',results)
 
-const bodyEl = document.body;
-function changeBackground(el, color, delay) {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			el.style.backgroundColor = color;
-			resolve(); // resolve the promise after the delay
-		}, delay);
-	});
-}
-// changeBackground(bodyEl, 'pink', 1000)
-// changeBackground(bodyEl, 'red', 2000)
-// changeBackground(bodyEl, 'violet', 3000)
-// changeBackground(bodyEl, 'green', 4000)
-// changeBackground(bodyEl, 'purple', 5000)
-
-const lightShow = async () => {
-	await changeBackground(bodyEl, 'pink', 1000);
-	await changeBackground(bodyEl, 'red', 1000);
-	await changeBackground(bodyEl, 'violet', 1000);
-	await changeBackground(bodyEl, 'green', 1000);
-	await changeBackground(bodyEl, 'purple', 1000);
-};
-
-lightShow();
 
 async function getPokemonSequentially() {
 	console.log('-----------get pokemon data sequentially using await -----------');
