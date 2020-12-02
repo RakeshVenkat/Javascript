@@ -88,7 +88,6 @@ let results = []
 const response = getResource('http://swapi.dev/api/starships')
 	.then(res => {results = res})
 	.catch(err => err);
-response()
 console.log(':::',results)
 
 
@@ -100,9 +99,9 @@ async function getPokemonSequentially() {
 	console.log('Done2');
 	const poke3 = await axios.get('https://pokeapi.co/api/v2/pokemon/3');
 	console.log('Done3');
-	console.log('Pokemon data', poke1.data.name);
-	console.log('Pokemon data', poke2.data.name);
-	console.log('Pokemon data', poke3.data.name);
+	console.log('Pokemon data  1', poke1.data.name);
+	console.log('Pokemon data  2', poke2.data.name);
+	console.log('Pokemon data  3', poke3.data.name);
 }
 getPokemonSequentially();
 
@@ -120,9 +119,9 @@ async function getPokemonAbilityInParallel() {
 	const ability2 = await prom2;
 	const ability3 = await prom3;
 
-	console.log('ability::', ability1.data.name);
-	console.log('ability::', ability2.data.name);
-	console.log('ability::', ability3.data.name);
+	console.log('ability1::', ability1.data.name);
+	console.log('ability2::', ability2.data.name);
+	console.log('ability3::', ability3.data.name);
 }
 getPokemonAbilityInParallel();
 
@@ -135,9 +134,9 @@ const getPokemonTypesInParallel = async () => {
 
 	const [type1, type2, type3] = await Promise.all([prom1, prom2, prom3])
 
-	console.log('Type info::', type1.data.name)
-	console.log('Type info::', type2.data.name)
-	console.log('Type info::', type3.data.name)
+	console.log('Type info  1::', type1.data.name)
+	console.log('Type info  2::', type2.data.name)
+	console.log('Type info  3::', type3.data.name)
 }
 
 getPokemonTypesInParallel()
